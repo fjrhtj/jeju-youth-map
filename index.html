@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제주 청소년 놀쉼지도</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+      background: #f3f7fc;
+      color: #1f2937;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      touch-action: manipulation;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .gov-strip {
+      background: #073b7a;
+      color: #dbeafe;
+      font-size: 13px;
+      padding: 7px 0;
+    }
+
+    .gov-strip .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0755b8 0%, #0b74d1 60%, #2f9bf2 100%);
+      color: white;
+      padding: 20px 0 46px;
+      box-shadow: 0 8px 24px rgba(15, 63, 143, 0.22);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: white;
+      color: #0755b8;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      margin-top: 5px;
+      color: #e0f2fe;
+      font-size: 15px;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: white;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.28);
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 42px;
+    }
+
+    nav button:hover {
+      background: white;
+      color: #0755b8;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-main h2 {
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.16;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .hero-main p {
+      font-size: 18px;
+      color: #f0f8ff;
+      margin-bottom: 14px;
+    }
+
+    .hero-guide {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 18px;
+      padding: 16px 18px;
+      max-width: 760px;
+      color: #eef7ff;
+      font-size: 15px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card li {
+      margin-left: 18px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #eef7ff;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .section-title h3 {
+      font-size: 28px;
+      color: #0f3f8f;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(15,63,143,0.08);
+      margin-bottom: 22px;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-group h4 {
+      color: #1e3a8a;
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .button-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn,
+    .region-btn,
+    .reset-btn {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.15s;
+      min-height: 44px;
+    }
+
+    .filter-btn:hover,
+    .region-btn:hover,
+    .reset-btn:hover {
+      background: #dbeafe;
+    }
+
+    .filter-btn.active,
+    .region-btn.active {
+      background: #0755b8;
+      color: white;
+      border-color: #0755b8;
+    }
+
+    .status {
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      border-radius: 18px;
+      padding: 15px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    .reset-btn {
+      background: white;
+      color: #075985;
+    }
+
+    .cards,
+    .program-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .space-card {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+      box-shadow: 0 10px 24px rgba(15,63,143,0.09);
+    }
+
+    .program-card {
+      min-height: 390px;
+    }
+
+    .card-head {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      padding: 18px 20px;
+      border-bottom: 1px solid #dbeafe;
+    }
+
+    .badges {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 11px;
+    }
+
+    .badge {
+      background: #0755b8;
+      color: white;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .badge.light {
+      background: white;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .space-card h4 {
+      color: #0f3f8f;
+      font-size: 21px;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .type {
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .card-body {
+      padding: 18px 20px;
+      flex: 1;
+    }
+
+    .info {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .info strong {
+      color: #1e3a8a;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 0 20px 20px;
+    }
+
+    .actions button,
+    .actions a {
+      text-align: center;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 10px 8px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 900;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .actions .primary {
+      background: #0755b8;
+      color: white;
+      border-color: #0755b8;
+    }
+
+    .program-notice {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .program-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 0 20px 20px;
+    }
+
+    .program-actions a {
+      text-align: center;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 12px 8px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 900;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .program-actions .primary {
+      background: #0755b8;
+      color: white;
+      border-color: #0755b8;
+    }
+
+    .slider {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .slider button {
+      background: #0755b8;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      min-height: 46px;
+      min-width: 130px;
+    }
+
+    .slider button:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .empty {
+      display: none;
+      background: white;
+      border: 2px dashed #93c5fd;
+      border-radius: 24px;
+      padding: 44px 20px;
+      text-align: center;
+      color: #475569;
+    }
+
+    .empty h4 {
+      color: #1e3a8a;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .loading {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      color: #1e3a8a;
+      font-weight: 900;
+    }
+
+    footer {
+      background: #0f3f8f;
+      color: white;
+      padding: 34px 0;
+      margin-top: 36px;
+    }
+
+    footer p {
+      margin-bottom: 9px;
+      opacity: 0.95;
+    }
+
+    .source {
+      font-size: 14px;
+      opacity: 0.86;
+    }
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.62);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal {
+      width: min(660px, 96vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .modal h3 {
+      color: #0f3f8f;
+      font-size: 25px;
+    }
+
+    .close-btn {
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      white-space: nowrap;
+      min-height: 40px;
+    }
+
+    .notice {
+      margin-top: 16px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    .report-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .report-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      color: #1e3a8a;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .optional-text {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .report-form input,
+    .report-form textarea {
+      width: 100%;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 12px 13px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      background: #f8fbff;
+    }
+
+    .report-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .report-form input:focus,
+    .report-form textarea:focus {
+      border-color: #0755b8;
+      box-shadow: 0 0 0 3px rgba(7,85,184,0.15);
+      background: white;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .form-actions button {
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-weight: 900;
+      min-height: 44px;
+    }
+
+    .cancel-report-btn {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .submit-report-btn {
+      background: #0755b8;
+      color: white;
+      border: 1px solid #0755b8;
+    }
+
+    .submit-report-btn:disabled {
+      background: #94a3b8;
+      border-color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .report-message {
+      min-height: 22px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #075985;
+    }
+
+    .report-message.error {
+      color: #b91c1c;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        width: min(94%, 720px);
+      }
+
+      header {
+        padding: 18px 0 34px;
+      }
+
+      .topbar {
+        justify-content: center;
+        margin-bottom: 26px;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
+        text-align: left;
+      }
+
+      .logo {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+        border-radius: 14px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      nav button {
+        width: 100%;
+        min-height: 46px;
+        padding: 10px 8px;
+        font-size: 13px;
+        border-radius: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .hero-main h2 {
+        font-size: 34px;
+      }
+
+      .hero-main p {
+        font-size: 16px;
+      }
+
+      .hero-guide {
+        font-size: 14px;
+        padding: 14px 15px;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+
+      section {
+        padding: 32px 0;
+      }
+
+      .section-title h3 {
+        font-size: 25px;
+      }
+
+      .panel {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .button-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .filter-btn,
+      .region-btn,
+      .reset-btn {
+        width: 100%;
+        border-radius: 14px;
+        padding: 11px 8px;
+        min-height: 46px;
+        font-size: 13px;
+        line-height: 1.25;
+      }
+
+      .status {
+        align-items: stretch;
+        padding: 14px;
+      }
+
+      .status > div {
+        width: 100%;
+      }
+
+      .status .reset-btn {
+        width: 100%;
+      }
+
+      .cards,
+      .program-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .space-card {
+        min-height: auto;
+        border-radius: 20px;
+      }
+
+      .program-card {
+        min-height: auto;
+      }
+
+      .card-head {
+        padding: 16px 18px;
+      }
+
+      .space-card h4 {
+        font-size: 19px;
+      }
+
+      .card-body {
+        padding: 16px 18px;
+      }
+
+      .info {
+        font-size: 14px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+        padding: 0 18px 18px;
+      }
+
+      .actions button,
+      .actions a {
+        min-height: 46px;
+        font-size: 14px;
+      }
+
+      .program-actions {
+        padding: 0 18px 18px;
+      }
+
+      .program-actions a {
+        min-height: 48px;
+        font-size: 15px;
+      }
+
+      .slider {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .slider button {
+        width: 100%;
+        min-width: 0;
+        padding: 12px 8px;
+        font-size: 14px;
+        border-radius: 14px;
+      }
+
+      .modal-bg {
+        padding: 12px;
+        align-items: flex-start;
+      }
+
+      .modal {
+        margin-top: 18px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .modal h3 {
+        font-size: 22px;
+      }
+
+      .form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .gov-strip {
+        font-size: 12px;
+      }
+
+      .gov-strip .container {
+        gap: 4px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+      }
+
+      nav {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main h2 {
+        font-size: 30px;
+      }
+
+      .button-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h3 {
+        font-size: 23px;
+      }
+
+      .slider {
+        grid-template-columns: 1fr;
+      }
+
+      .badge {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="gov-strip">
+    <div class="container">
+      <span>시빅해킹 프로젝트 · 공공 청소년 공간 정보 안내</span>
+      <span>프로그램 정보: 1개월 단위 업데이트</span>
+    </div>
+  </div>
+
+  <header id="home">
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">쉼</div>
+          <div>
+            <h1>제주 청소년 놀쉼지도</h1>
+            <p class="subtitle">제주특별자치도 청소년 공간 정보 서비스</p>
+          </div>
+        </div>
+
+        <nav>
+          <button class="menu-btn" type="button" data-target="home">홈</button>
+          <button class="menu-btn" type="button" data-target="space-search">공간찾기</button>
+          <button class="menu-btn" type="button" data-target="program">프로그램</button>
+          <button class="menu-btn report-menu-btn" type="button" data-report-type="정보 오류 제보">정보 오류 제보하기</button>
+          <button class="menu-btn report-menu-btn" type="button" data-report-type="새 공간 제보">새 공간 제보하기</button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-main">
+          <h2>제주 청소년,<br>오늘 어디서 놀고 쉴까?</h2>
+          <p>지역과 활동을 선택하면 이용 가능한 공간을 한눈에 확인할 수 있어요.</p>
+
+          <div class="hero-guide">
+            아래의 활동별·지역별 버튼을 눌러 원하는 조건에 맞는 청소년 공간을 찾아보세요.
+            예: 노래방 / 보드게임 / 공부공간 / 제주시 / 동부 / 서부
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <strong>문제의식</strong>
+          <ul>
+            <li>청소년 공간이 아예 없는 것이 아니라 찾기 어렵다.</li>
+            <li>지역, 활동, 운영 조건을 한눈에 비교하기 어렵다.</li>
+            <li>기존 공간을 청소년 눈높이에 맞게 모아 보여준다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="space-search">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>공간찾기</h3>
+            <p>버튼을 누르면 조건에 맞는 공간 카드가 바로 바뀝니다.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="filter-group">
+            <h4>활동별 필터</h4>
+            <div class="button-list">
+              <button class="filter-btn" data-activity="댄스">댄스 연습할 곳</button>
+              <button class="filter-btn" data-activity="보드게임">보드게임 할 곳</button>
+              <button class="filter-btn" data-activity="공부공간">공부할 곳</button>
+              <button class="filter-btn" data-activity="노래방">노래방 있는 곳</button>
+              <button class="filter-btn" data-activity="친구랑">친구랑 갈 곳</button>
+              <button class="filter-btn" data-activity="북카페">북카페</button>
+              <button class="filter-btn" data-activity="체육활동">체육활동</button>
+              <button class="filter-btn" data-activity="상담/쉼">상담/쉼</button>
+              <button class="filter-btn" data-activity="주말운영">주말운영</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>지역별 필터</h4>
+            <div class="button-list">
+              <button class="region-btn active" data-region="전체">전체</button>
+              <button class="region-btn" data-region="제주시">제주시</button>
+              <button class="region-btn" data-region="서귀포시">서귀포시</button>
+              <button class="region-btn" data-region="동부">동부</button>
+              <button class="region-btn" data-region="서부">서부</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div>
+            선택한 조건: <span id="selectedText">전체</span><br>
+            검색 결과: <span id="resultCount">0</span>개
+          </div>
+          <button class="reset-btn" id="resetBtn" type="button">조건 초기화</button>
+        </div>
+
+        <div class="loading" id="spaceLoading">공간 정보를 불러오는 중입니다.</div>
+        <div class="cards" id="cardList"></div>
+
+        <div class="empty" id="emptyState">
+          <h4>검색 결과가 없습니다.</h4>
+          <p>다른 지역이나 활동을 선택해 보세요.</p>
+        </div>
+
+        <div class="slider">
+          <button id="prevBtn" type="button">← 이전 보기</button>
+          <button id="nextBtn" type="button">다음 보기 →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>2026년 7월 프로그램</h3>
+            <p>프로그램 정보는 1개월 단위로 조사·업데이트됩니다.</p>
+          </div>
+        </div>
+
+        <div class="program-notice">
+          이번 달 운영·모집 프로그램을 카드형으로 제공합니다.
+          신청 버튼을 누르면 해당 프로그램의 신청 또는 안내 페이지로 이동합니다.
+        </div>
+
+        <div class="loading" id="programLoading">프로그램 정보를 불러오는 중입니다.</div>
+        <div class="program-cards" id="programList"></div>
+
+        <div class="slider">
+          <button id="programPrevBtn" type="button">← 이전 프로그램</button>
+          <button id="programNextBtn" type="button">다음 프로그램 →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>본 사이트는 제주 청소년이 이용할 수 있는 공공 여가·휴식 공간 정보를 쉽게 찾을 수 있도록 제작된 시빅해킹 프로젝트입니다.</p>
+      <p class="source">사용 출처: 제주특별자치도청소년활동진흥센터, 제주특별자치도 공공도서관, 각 시설 공식 안내 자료</p>
+      <p class="source">프로그램 정보는 1개월 단위로 조사·업데이트됩니다.</p>
+    </div>
+  </footer>
+
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <div class="modal-top">
+        <h3 id="modalTitle">상세정보</h3>
+        <button class="close-btn" id="closeModalBtn" type="button">닫기</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-bg" id="reportModalBg">
+    <div class="modal">
+      <div class="modal-top">
+        <h3 id="reportModalTitle">제보하기</h3>
+        <button class="close-btn" id="closeReportBtn" type="button">닫기</button>
+      </div>
+
+      <form class="report-form" id="reportForm">
+        <input type="hidden" id="reportTypeInput">
+
+        <label>
+          공간 이름
+          <input id="reportSpaceName" type="text" placeholder="예: 제주시청소년수련관" required>
+        </label>
+
+        <label>
+          내용
+          <textarea id="reportContent" placeholder="예: 운영시간이 바뀌었어요 / 주소가 달라요 / 새로 추가할 공간이 있어요" required></textarea>
+        </label>
+
+        <label>
+          연락처 또는 이메일
+          <span class="optional-text">(답변을 원할 경우 입력해주세요.)</span>
+          <input id="reportContact" type="text" placeholder="선택 입력: 답변을 원할 경우 연락처 또는 이메일을 입력해주세요.">
+        </label>
+
+        <div class="notice">
+          연락처 또는 이메일은 답변을 원하는 경우에만 선택적으로 입력합니다.
+          입력한 내용은 제보 확인과 답변 목적으로만 사용됩니다.
+        </div>
+
+        <div class="form-actions">
+          <button class="cancel-report-btn" id="cancelReportBtn" type="button">취소</button>
+          <button class="submit-report-btn" id="submitReportBtn" type="submit">제보하기</button>
+        </div>
+
+        <p class="report-message" id="reportMessage"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzoOVPPXSHZZ5419ErsF5FnQCWvrmYB4Hs04xbIWi6YWkyu3nc325tI4M4m88rj2ihJ/exec";
+
+    let spaces = [];
+    let programs = [];
+
+    let selectedActivity = "";
+    let selectedRegion = "전체";
+    let slideIndex = 0;
+    let programSlideIndex = 0;
+
+    const cardsPerPage = 3;
+    const programsPerPage = 3;
+
+    const resetBtn = document.getElementById("resetBtn");
+    const cardList = document.getElementById("cardList");
+    const emptyState = document.getElementById("emptyState");
+    const resultCount = document.getElementById("resultCount");
+    const selectedText = document.getElementById("selectedText");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modalBg = document.getElementById("modalBg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    const reportModalBg = document.getElementById("reportModalBg");
+    const reportModalTitle = document.getElementById("reportModalTitle");
+    const closeReportBtn = document.getElementById("closeReportBtn");
+    const cancelReportBtn = document.getElementById("cancelReportBtn");
+    const reportForm = document.getElementById("reportForm");
+    const reportTypeInput = document.getElementById("reportTypeInput");
+    const reportSpaceName = document.getElementById("reportSpaceName");
+    const reportContent = document.getElementById("reportContent");
+    const reportContact = document.getElementById("reportContact");
+    const submitReportBtn = document.getElementById("submitReportBtn");
+    const reportMessage = document.getElementById("reportMessage");
+
+    const programPrevBtn = document.getElementById("programPrevBtn");
+    const programNextBtn = document.getElementById("programNextBtn");
+
+    const spaceLoading = document.getElementById("spaceLoading");
+    const programLoading = document.getElementById("programLoading");
+
+    const programList = document.getElementById("programList");
+
+    function jsonp(action, params) {
+      return new Promise(function(resolve, reject) {
+        const callbackName = "callback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+
+        const query = new URLSearchParams({
+          action: action,
+          callback: callbackName
+        });
+
+        if (params) {
+          Object.keys(params).forEach(function(key) {
+            query.append(key, params[key]);
+          });
+        }
+
+        const script = document.createElement("script");
+        script.src = API_URL + "?" + query.toString();
+
+        window[callbackName] = function(data) {
+          delete window[callbackName];
+          script.remove();
+          resolve(data);
+        };
+
+        script.onerror = function() {
+          delete window[callbackName];
+          script.remove();
+          reject(new Error("서버 연결에 실패했습니다."));
+        };
+
+        document.body.appendChild(script);
+      });
+    }
+
+    function normalize(text) {
+      return String(text || "")
+        .replace(/\s/g, "")
+        .replace(/[·ㆍ\/]/g, "")
+        .toLowerCase();
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function getFilteredSpaces() {
+      const activity = normalize(selectedActivity);
+
+      return spaces.filter(function(space) {
+        const activityText = normalize(
+          ((space.activities || []).join(" ")) + " " + ((space.filters || []).join(" "))
+        );
+
+        const activityOk = !activity || activityText.indexOf(activity) > -1;
+
+        const regionOk =
+          selectedRegion === "전체" ||
+          space.city === selectedRegion ||
+          space.region === selectedRegion;
+
+        return activityOk && regionOk;
+      });
+    }
+
+    function makeMapUrl(space) {
+      return "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent((space.name || "") + " " + (space.address || ""));
+    }
+
+    function makeTags(space) {
+      const mixed = (space.activities || []).concat(space.filters || []);
+      const unique = [];
+
+      for (let i = 0; i < mixed.length; i++) {
+        if (unique.indexOf(mixed[i]) === -1) {
+          unique.push(mixed[i]);
+        }
+      }
+
+      return unique.slice(0, 12).map(function(tag) {
+        return '<span class="tag">' + escapeHtml(tag) + '</span>';
+      }).join("");
+    }
+
+    function createCard(space, index) {
+      return `
+        <article class="space-card">
+          <div class="card-head">
+            <div class="badges">
+              <span class="badge">${escapeHtml(space.city)}</span>
+              <span class="badge light">${escapeHtml(space.region)}</span>
+              <span class="badge light">${escapeHtml(space.status)}</span>
+            </div>
+            <h4>${escapeHtml(space.name)}</h4>
+            <p class="type">${escapeHtml(space.type)}</p>
+          </div>
+
+          <div class="card-body">
+            <p class="info"><strong>할 수 있는 활동:</strong> ${escapeHtml((space.activities || []).join(", "))}</p>
+            <p class="info"><strong>위치:</strong> ${escapeHtml(space.address)}</p>
+            <p class="info"><strong>운영:</strong> ${escapeHtml(space.hours)}</p>
+            <p class="info"><strong>전화:</strong> ${escapeHtml(space.phone)}</p>
+            <div class="tags">${makeTags(space)}</div>
+          </div>
+
+          <div class="actions">
+            <button class="primary detail-btn" type="button" data-index="${index}">자세히 보기</button>
+            <button class="map-btn" type="button" data-index="${index}">지도 보기</button>
+            <a href="${escapeHtml(space.url)}" target="_blank" rel="noopener">공식 홈페이지</a>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderPrograms() {
+      if (!programList) {
+        return;
+      }
+
+      let visiblePrograms = programs.slice(programSlideIndex, programSlideIndex + programsPerPage);
+
+      if (visiblePrograms.length < programsPerPage && programs.length > programsPerPage) {
+        visiblePrograms = visiblePrograms.concat(
+          programs.slice(0, programsPerPage - visiblePrograms.length)
+        );
+      }
+
+      let html = "";
+
+      visiblePrograms.forEach(function(program) {
+        const applyUrl = program.applyUrl || "https://www.jejuyouth.net/m/";
+
+        html += `
+          <article class="space-card program-card">
+            <div class="card-head">
+              <div class="badges">
+                <span class="badge">${escapeHtml(program.status)}</span>
+                <span class="badge light">${escapeHtml(program.category)}</span>
+              </div>
+              <h4>${escapeHtml(program.title)}</h4>
+              <p class="type">${escapeHtml(program.spaceName)}</p>
+            </div>
+
+            <div class="card-body">
+              <p class="info"><strong>운영기간:</strong> ${escapeHtml(program.period)}</p>
+              <p class="info"><strong>대상:</strong> ${escapeHtml(program.target)}</p>
+              <p class="info"><strong>내용:</strong> ${escapeHtml(program.description)}</p>
+            </div>
+
+            <div class="program-actions">
+              <a class="primary" href="${escapeHtml(applyUrl)}" target="_blank" rel="noopener">신청</a>
+            </div>
+          </article>
+        `;
+      });
+
+      programList.innerHTML = html;
+
+      if (programPrevBtn && programNextBtn) {
+        programPrevBtn.disabled = programs.length <= programsPerPage;
+        programNextBtn.disabled = programs.length <= programsPerPage;
+      }
+    }
+
+    function updateStatus(total) {
+      const parts = [];
+
+      if (selectedRegion !== "전체") {
+        parts.push(selectedRegion);
+      }
+
+      if (selectedActivity) {
+        parts.push(selectedActivity);
+      }
+
+      selectedText.textContent = parts.length ? parts.join(" · ") : "전체";
+      resultCount.textContent = total;
+    }
+
+    function render() {
+      const filtered = getFilteredSpaces();
+      updateStatus(filtered.length);
+
+      if (filtered.length === 0) {
+        cardList.innerHTML = "";
+        emptyState.style.display = "block";
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      if (slideIndex >= filtered.length) {
+        slideIndex = 0;
+      }
+
+      let visible = filtered.slice(slideIndex, slideIndex + cardsPerPage);
+
+      if (visible.length < cardsPerPage && filtered.length > cardsPerPage) {
+        visible = visible.concat(filtered.slice(0, cardsPerPage - visible.length));
+      }
+
+      let html = "";
+
+      for (let i = 0; i < visible.length; i++) {
+        html += createCard(visible[i], spaces.indexOf(visible[i]));
+      }
+
+      cardList.innerHTML = html;
+      prevBtn.disabled = filtered.length <= cardsPerPage;
+      nextBtn.disabled = filtered.length <= cardsPerPage;
+    }
+
+    function resetSlideAndRender() {
+      slideIndex = 0;
+      render();
+    }
+
+    function openReportModal(reportType) {
+      reportModalTitle.textContent = reportType + "하기";
+      reportTypeInput.value = reportType;
+
+      reportSpaceName.value = "";
+      reportContent.value = "";
+      reportContact.value = "";
+
+      reportMessage.textContent = "";
+      reportMessage.classList.remove("error");
+
+      submitReportBtn.disabled = false;
+      submitReportBtn.textContent = "제보하기";
+
+      reportModalBg.style.display = "flex";
+
+      setTimeout(function() {
+        reportSpaceName.focus();
+      }, 100);
+    }
+
+    function closeReportModal() {
+      reportModalBg.style.display = "none";
+    }
+
+    document.querySelectorAll(".menu-btn").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const targetId = button.getAttribute("data-target");
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll(".report-menu-btn").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const reportType = button.getAttribute("data-report-type");
+        openReportModal(reportType);
+      });
+    });
+
+    document.querySelectorAll(".filter-btn").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const value = button.getAttribute("data-activity");
+        selectedActivity = selectedActivity === value ? "" : value;
+
+        document.querySelectorAll(".filter-btn").forEach(function(btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-activity") === selectedActivity);
+        });
+
+        resetSlideAndRender();
+      });
+    });
+
+    document.querySelectorAll(".region-btn").forEach(function(button) {
+      button.addEventListener("click", function() {
+        selectedRegion = button.getAttribute("data-region");
+
+        document.querySelectorAll(".region-btn").forEach(function(btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-region") === selectedRegion);
+        });
+
+        resetSlideAndRender();
+      });
+    });
+
+    resetBtn.addEventListener("click", function() {
+      selectedActivity = "";
+      selectedRegion = "전체";
+
+      document.querySelectorAll(".filter-btn").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      document.querySelectorAll(".region-btn").forEach(function(btn) {
+        btn.classList.toggle("active", btn.getAttribute("data-region") === "전체");
+      });
+
+      resetSlideAndRender();
+    });
+
+    nextBtn.addEventListener("click", function() {
+      const filtered = getFilteredSpaces();
+
+      if (filtered.length > cardsPerPage) {
+        slideIndex += cardsPerPage;
+
+        if (slideIndex >= filtered.length) {
+          slideIndex = 0;
+        }
+
+        render();
+      }
+    });
+
+    prevBtn.addEventListener("click", function() {
+      const filtered = getFilteredSpaces();
+
+      if (filtered.length > cardsPerPage) {
+        slideIndex -= cardsPerPage;
+
+        if (slideIndex < 0) {
+          const remainder = filtered.length % cardsPerPage;
+          slideIndex = remainder === 0 ? filtered.length - cardsPerPage : filtered.length - remainder;
+        }
+
+        render();
+      }
+    });
+
+    if (programNextBtn) {
+      programNextBtn.addEventListener("click", function() {
+        if (programs.length > programsPerPage) {
+          programSlideIndex += programsPerPage;
+
+          if (programSlideIndex >= programs.length) {
+            programSlideIndex = 0;
+          }
+
+          renderPrograms();
+        }
+      });
+    }
+
+    if (programPrevBtn) {
+      programPrevBtn.addEventListener("click", function() {
+        if (programs.length > programsPerPage) {
+          programSlideIndex -= programsPerPage;
+
+          if (programSlideIndex < 0) {
+            const remainder = programs.length % programsPerPage;
+            programSlideIndex = remainder === 0
+              ? programs.length - programsPerPage
+              : programs.length - remainder;
+          }
+
+          renderPrograms();
+        }
+      });
+    }
+
+    cardList.addEventListener("click", function(event) {
+      const detailButton = event.target.closest(".detail-btn");
+      const mapButton = event.target.closest(".map-btn");
+
+      if (detailButton) {
+        openDetail(Number(detailButton.getAttribute("data-index")));
+      }
+
+      if (mapButton) {
+        const space = spaces[Number(mapButton.getAttribute("data-index"))];
+        window.open(makeMapUrl(space), "_blank", "noopener");
+      }
+    });
+
+    function openDetail(index) {
+      const space = spaces[index];
+
+      if (!space) {
+        return;
+      }
+
+      modalTitle.textContent = space.name;
+
+      modalContent.innerHTML = `
+        <p class="info"><strong>공간명:</strong> ${escapeHtml(space.name)}</p>
+        <p class="info"><strong>공간 유형:</strong> ${escapeHtml(space.type)}</p>
+        <p class="info"><strong>지역:</strong> ${escapeHtml(space.city)} / ${escapeHtml(space.region)}</p>
+        <p class="info"><strong>주소:</strong> ${escapeHtml(space.address)}</p>
+        <p class="info"><strong>전화:</strong> ${escapeHtml(space.phone)}</p>
+        <p class="info"><strong>운영시간:</strong> ${escapeHtml(space.hours)}</p>
+        <p class="info"><strong>가능 활동:</strong> ${escapeHtml((space.activities || []).join(", "))}</p>
+        <p class="info"><strong>설명:</strong> ${escapeHtml(space.description)}</p>
+        <p class="info"><strong>출처:</strong> ${escapeHtml(space.source)}</p>
+        <div class="notice">
+          실제 방문 전에는 운영시간, 휴관일, 예약 필요 여부를 공식 홈페이지나 전화로 확인하는 것이 좋습니다.
+        </div>
+      `;
+
+      modalBg.style.display = "flex";
+    }
+
+    function closeModal() {
+      modalBg.style.display = "none";
+    }
+
+    closeModalBtn.addEventListener("click", closeModal);
+    closeReportBtn.addEventListener("click", closeReportModal);
+    cancelReportBtn.addEventListener("click", closeReportModal);
+
+    modalBg.addEventListener("click", function(event) {
+      if (event.target === modalBg) {
+        closeModal();
+      }
+    });
+
+    reportModalBg.addEventListener("click", function(event) {
+      if (event.target === reportModalBg) {
+        closeReportModal();
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeModal();
+        closeReportModal();
+      }
+    });
+
+    reportForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const formData = {
+        reportType: reportTypeInput.value,
+        spaceName: reportSpaceName.value.trim(),
+        content: reportContent.value.trim(),
+        contact: reportContact.value.trim()
+      };
+
+      if (!formData.spaceName || !formData.content) {
+        reportMessage.textContent = "공간 이름과 내용을 입력해 주세요.";
+        reportMessage.classList.add("error");
+        return;
+      }
+
+      submitReportBtn.disabled = true;
+      submitReportBtn.textContent = "전송 중...";
+      reportMessage.textContent = "제보를 전송하고 있습니다.";
+      reportMessage.classList.remove("error");
+
+      jsonp("report", formData)
+        .then(function(result) {
+          if (!result.success) {
+            throw new Error(result.message || "전송 실패");
+          }
+
+          reportMessage.textContent = result.message || "제보가 전송되었습니다.";
+          reportMessage.classList.remove("error");
+          submitReportBtn.textContent = "전송 완료";
+
+          setTimeout(function() {
+            closeReportModal();
+          }, 1200);
+        })
+        .catch(function(error) {
+          reportMessage.textContent = "전송에 실패했습니다. Apps Script 권한과 배포 상태를 확인해 주세요.";
+          reportMessage.classList.add("error");
+          submitReportBtn.disabled = false;
+          submitReportBtn.textContent = "제보하기";
+          console.error(error);
+        });
+    });
+
+    async function loadData() {
+      try {
+        const spaceResult = await jsonp("spaces");
+        const programResult = await jsonp("programs");
+
+        if (!spaceResult.success) {
+          throw new Error(spaceResult.message || "공간 정보를 불러오지 못했습니다.");
+        }
+
+        if (!programResult.success) {
+          throw new Error(programResult.message || "프로그램 정보를 불러오지 못했습니다.");
+        }
+
+        spaces = spaceResult.data || [];
+        programs = programResult.data || [];
+
+        spaceLoading.style.display = "none";
+        programLoading.style.display = "none";
+
+        render();
+        renderPrograms();
+      } catch (error) {
+        console.error(error);
+        spaceLoading.textContent = "데이터를 불러오지 못했습니다. Apps Script 웹앱 URL을 확인해 주세요.";
+        programLoading.textContent = "데이터를 불러오지 못했습니다. Apps Script 웹앱 URL을 확인해 주세요.";
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
